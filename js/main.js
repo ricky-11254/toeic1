@@ -322,7 +322,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       
                 // Add image if exists
                 if (question.image) {
-                    html += `<img src="${question.image}" alt="Question Image" class="question-image">`;
+                    html += `<img src="https://ricky-11254.github.io/toeic1/img/${question.image}" alt="Question Image" class="question-image">`;
                 }
       
                 // Add audio if exists
