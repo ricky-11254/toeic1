@@ -329,7 +329,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 if (question.audio) {
                     html += `
                         <audio controls>
-                            <source src="https://ricky-11254.github.io/launch_english_files/audio/${question.audio}" type="audio/mpeg">
+                            <source src="https://ricky-11254.github.io/toeic1/audio/${question.audio}" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
                     `;
