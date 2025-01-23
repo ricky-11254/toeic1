@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
           // Show 'image' defined in question object
 
           if (typeof question.image !== "undefined") {
-            $("#image img").attr("src", question.image);
+            $("#image img").attr("src", "https://ricky-11254.github.io/toeic1/img/" + question.image);
             $("#image").show();
           } else {
             $("#image").hide();
@@ -182,7 +182,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
           if (typeof question.audio !== "undefined") {
             $("#audio").show();
-            $("#audio audio").attr("src", "audio/" + question.audio);
+            $("#audio audio").attr("src", "https://ricky-11254.github.io/toeic1/audio/" + question.audio);
+
             // $("#audio audio")[0].play();
           } else {
             $("#audio").hide();
