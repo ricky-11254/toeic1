@@ -32,9 +32,7 @@
       choices: ["A", "B", "C", "D"],
       correctAnswer: 3,
       audio: "themanispushing_toeic1_dk_vo.mp3",
-      // image: "img/manshoveling.jpg",
-    https://ricky-11254.github.io/toeic1/img/manshoveling.jpg
-      image: "https://ricky-11254.github.io/img/1-10_toeic1.png",
+      image: "img/manshoveling.jpg",
       content: "",
       explanation: "Snow can clearly be seen in the photo as well as the roadway that the man stands in as he shovels."
     },
