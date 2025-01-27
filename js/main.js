@@ -323,7 +323,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       
                 // Add image if exists
                 if (question.image) {
-                    html += `<img src="https://ricky-11254.github.io/toeic1/img/${question.image}" alt="Question Image" class="question-image">`;
+                    html += `<img src="https://ricky-11254.github.io/toeic1/${question.image}" alt="Question Image" class="question-image">`;
                 }
       
                 // Add audio if exists
@@ -366,11 +366,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
       
                 html += `</div>`; // Close question div
             });
-      
+             
             // Close HTML
             html += `
                 <div style="text-align: center; margin-top: 20px;">
-                    <button onclick="window.download()">Download Results</button>
+                    <button onclick="window.print()">Download Results</button>
                 </div>
                 </body>
                 </html>
