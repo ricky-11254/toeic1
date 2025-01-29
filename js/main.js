@@ -370,7 +370,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             // Close HTML
             html += `
                 <div style="text-align: center; margin-top: 20px;">
-                    <button onclick="window.print()">Download Results</button>
+                    <button id="dowload-pdf">Download Results as PDF</button>
                 </div>
                 </body>
                 </html>
@@ -380,6 +380,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
             const resultsWindow = window.open('', '_blank');
             resultsWindow.document.write(html);
             resultsWindow.document.close();
+            resultsWindow.document.getElementById('download-pdf').addEventListener('click', () => {
+                const doc = new jsPDF();
+                doc.fromHTML(resultsWindow.document.body, 10, 10);
+                doc.save('quiz-results.pdf');
+            });
+ 
         }
          // Call results generation
          generateResultsPage();
