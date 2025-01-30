@@ -370,7 +370,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             // Close HTML
             html += `
                 <div style="text-align: center; margin-top: 20px;">
-                    <button id="dowload-pdf">Download Results as PDF</button>
+                    <button id="download-pdf">Download Results as PDF</button>
                 </div>
                 </body>
                 </html>
