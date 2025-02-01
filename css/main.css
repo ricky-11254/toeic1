@@ -133,7 +133,7 @@ button a:hover {
   border-radius: 5px;
   /*color: #FFFFFF;*/
   font-weight: bold;
-  box-shadow: 5px 5px 5px #888;
+  /*box-shadow: 5px 5px 5px #888;*/
 }
 
 #containerInner {
