@@ -251,14 +251,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
             // Calculate score
             const score = getScore();
             const totalQuestions = questions.length;
-      
+
             // Start building HTML content
             let html = `
                 <!DOCTYPE html>
                 <html>
                 <head>
                     <title>Quiz Results</title>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
                     <style>
                         body { 
                             font-family: Arial, sans-serif; 
@@ -309,34 +309,34 @@ document.addEventListener("DOMContentLoaded", (event) => {
                         You scored ${score} out of ${totalQuestions}
                     </div>
             `;
-      
+
             // Generate results for each question
             questions.forEach((question, index) => {
                 const userAnswer = selections[index];
                 const isCorrect = userAnswer === question.correctAnswer;
-      
+
                 // Start question div
                 html += `
                     <div class="question">
                         <h3>Question ${index + 1}: ${question.qType || 'Question'}</h3>
                         <p>${question.question}</p>
                 `;
-      
+
                 // Add image if exists
                 if (question.image) {
-                    html += `<img src="https://ricky-11254.github.io/toeic1/${question.image}" alt="Question Image" class="question-image">`;
+                    html += `<img src="https://ricky-11254.github.io/jamb1/${question.image}" alt="Question Image" class="question-image">`;
                 }
-      
+
                 // Add audio if exists
                 if (question.audio) {
                     html += `
                         <audio controls>
-                            <source src="https://ricky-11254.github.io/toeic1/audio/${question.audio}" type="audio/mpeg">
+                            <source src="https://ricky-11254.github.io/jamb1/audio/${question.audio}" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
                     `;
                 }
-      
+
                 // Generate choices
                 html += `<div class="choices">`;
                 question.choices.forEach((choice, choiceIndex) => {
@@ -347,7 +347,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     if (choiceIndex === userAnswer) {
                         choiceClass += isCorrect ? ' correct' : ' incorrect';
                     }
-      
+
                     html += `
                         <div class="choice ${choiceClass}">
                             ${choice}
@@ -355,7 +355,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     `;
                 });
                 html += `</div>`;
-      
+
                 // Add explanation if the answer was incorrect
                 if (!isCorrect && question.explanation) {
                     html += `
@@ -364,30 +364,47 @@ document.addEventListener("DOMContentLoaded", (event) => {
                         </div>
                     `;
                 }
-      
+
                 html += `</div>`; // Close question div
             });
-             
+
             // Close HTML
             html += `
                 <div style="text-align: center; margin-top: 20px;">
-                    <button id="download-pdf">Download Results as PDF</button>
+                    <button onclick="downloadResults()" class="download-btn">Download Results</button>
                 </div>
+                <script>
+                    function downloadResults() {
+                        // Remove the download button temporarily
+                        const btn = document.querySelector('.download-btn');
+                        btn.style.display = 'none';
+                        
+                        // PDF options
+                        const opt = {
+                            margin: 1,
+                            filename: 'quiz-results.pdf',
+                            image: { type: 'jpeg', quality: 0.98 },
+                            html2canvas: { scale: 2 },
+                            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                        };
+
+                        // Generate PDF from the body content
+                        html2pdf().set(opt).from(document.body).save().then(function() {
+                            // Show the button again after PDF is generated
+                            btn.style.display = 'block';
+                        });
+                    }
+                </script>
                 </body>
                 </html>
             `;
-      
+
             // Open results in a new window
             const resultsWindow = window.open('', '_blank');
             resultsWindow.document.write(html);
             resultsWindow.document.close();
-            resultsWindow.document.getElementById('download-pdf').addEventListener('click', () => {
-                const doc = new jsPDF();
-                doc.fromHTML(resultsWindow.document.body, 10, 10);
-                doc.save('quiz-results.pdf');
-            });
- 
         }
+
          // Call results generation
          generateResultsPage();
       
