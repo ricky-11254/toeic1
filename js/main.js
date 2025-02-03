@@ -324,14 +324,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
                 // Add image if exists
                 if (question.image) {
-                    html += `<img src="https://ricky-11254.github.io/jamb1/${question.image}" alt="Question Image" class="question-image">`;
+                    html += `<img src="https://ricky-11254.github.io/toeic1/${question.image}" alt="Question Image" class="question-image">`;
                 }
 
                 // Add audio if exists
                 if (question.audio) {
                     html += `
                         <audio controls>
-                            <source src="https://ricky-11254.github.io/jamb1/audio/${question.audio}" type="audio/mpeg">
+                            <source src="https://ricky-11254.github.io/toeic1/audio/${question.audio}" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
                     `;
