@@ -258,6 +258,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 <html>
                 <head>
                     <title>Quiz Results</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
                     <style>
                         body { 
                             font-family: Arial, sans-serif; 
