@@ -89,6 +89,30 @@ h1 {
 #quiz {
   text-indent: 10px;
   display: none;
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+}
+#quiz h2,
+#quiz p,
+#quiz label,
+#quiz input[type="radio"] {
+    text-align: left;
+}
+
+#quiz label,
+#quiz input[type="radio"] {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#quiz ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#quiz li {
+    margin-bottom: 10px;
 }
 
 .button {
