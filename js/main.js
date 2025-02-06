@@ -373,6 +373,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 <div style="text-align: center; margin-top: 20px;">
                     <button onclick="downloadResults()" class="download-btn">Download Results</button>
                 </div>
+               </body>
+                </html>
                 <script>
                     function downloadResults() {
                         // Remove the download button temporarily
@@ -384,8 +386,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
                             margin: 1,
                             filename: 'quiz-results.pdf',
                             image: { type: 'jpeg', quality: 0.98 },
-                            html2canvas: { scale: 2 },
-                            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                            html2canvas: { scale: 2, useCORS: true },
+                            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+                            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
                         };
 
                         // Generate PDF from the body content
@@ -395,8 +398,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
                         });
                     }
                 </script>
-                </body>
-                </html>
+
+                <style>
+                    .question {
+                        page-break-inside: avoid;
+                    }
+                </style>
             `;
 
             // Open results in a new window
