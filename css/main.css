@@ -93,26 +93,27 @@ h1 {
   font-size: 18px;
   font-weight: bold;
 }
-#quiz h2,
-#quiz p,
-#quiz label,
+
+#quiz label {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
 #quiz input[type="radio"] {
-    text-align: left;
+    display: done;
 }
 
-#quiz label,
-#quiz input[type="radio"] {
-    display: inline-block;
-    vertical-align: middle;
+#quiz input[type="radio"]:checked + label {
+  background-color: blue;
+  color: white;
 }
 
-#quiz ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-#quiz li {
-    margin-bottom: 10px;
+#quiz label:hover {
+  background-color: lightblue;
 }
 
 .button {
