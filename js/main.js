@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-/*  const hamburger = document.querySelector(".hamburger");
+  const hamburger = document.querySelector(".hamburger");
   const navMenu = document.querySelector(".nav-menu");
 
   hamburger.addEventListener("click", () => {
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 
 
-  /** Smooth Scrolling
+  /** Smooth Scrolling**/
   $(document).on("click", 'a[href^="#"]', function (event) {
     event.preventDefault();
     $("html, body").animate(
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       500
     );
   });
-**/
+
   (function () {
 
     var questionCounter = 0; //Tracks question number
@@ -149,33 +149,32 @@ document.addEventListener("DOMContentLoaded", (event) => {
       var input = "";
       for (var i = 0; i < questions[index].choices.length; i++) {
         item = $("<li>");
-        input = '<input type="radio" id="choice' + i + '" name="answer" value=' + i + ' />';
-        input += '<label for="choice' + i + '">' + questions[index].choices[i] + '</label>'; 
+        input = '<label><input type="radio" name="answer" value=' + i + " />";
         input += questions[index].choices[i];
         input += "</label>";
         item.append(input);
-        radiolist.append(item);
+        radioList.append(item);
       }
-      return radiolist;
+      return radioList;
     }
 
-    // reads the user selection and pushes the value to an array
+    // Reads the user selection and pushes the value to an array
     function choose() {
-      selections[questioncounter] = +$('input[name="answer"]:checked').val();
+      selections[questionCounter] = +$('input[name="answer"]:checked').val();
     }
 
-    // displays next requested element
+    // Displays next requested element
     function displayNext() {
-      quiz.fadeout(function () {
+      quiz.fadeOut(function () {
         $("#question").remove();
 
-        if (questioncounter < questions.length) {
-          var question = questions[questioncounter];
+        if (questionCounter < questions.length) {
+          var question = questions[questionCounter];
 
-          // show 'image' defined in question object
+          // Show 'image' defined in question object
 
           if (typeof question.image !== "undefined") {
-            $("#image img").attr("src", "https://ricky-11254.github.io/toeic1/" + question.image);
+            $("#image img").attr("src", question.image);
             $("#image").show();
           } else {
             $("#image").hide();
@@ -183,8 +182,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
           if (typeof question.audio !== "undefined") {
             $("#audio").show();
-            $("#audio audio").attr("src", "https://ricky-11254.github.io/toeic1/audio/" + question.audio);
-
+            $("#audio audio").attr("src", "audio/" + question.audio);
             // $("#audio audio")[0].play();
           } else {
             $("#audio").hide();
@@ -192,41 +190,41 @@ document.addEventListener("DOMContentLoaded", (event) => {
           }
 
          
-          // show 'content' defined in question object
-          console.log(typeof question.content, defaultquestioncontent);
+          // Show 'content' defined in question object
+          console.log(typeof question.content, defaultQuestionContent);
           if (typeof question.content === "undefined") {
-            $("#content").text(defaultquestioncontent);
+            $("#content").text(defaultQuestionContent);
           } else {
             $("#content").text(question.content);
           }
 
-          // show 'qtype' defined in question object
-          console.log(typeof question.qtype, defaultquestioncontent);
-          if (typeof question.qtype === "undefined") {
-            $("#qtype").text(defaultquestioncontent);
+          // Show 'qType' defined in question object
+          console.log(typeof question.qType, defaultQuestionContent);
+          if (typeof question.qType === "undefined") {
+            $("#qType").text(defaultQuestionContent);
           } else {
-            $("#qtype").text(question.qtype);
+            $("#qType").text(question.qType);
           }
 
-          var nextquestion = createquestionelement(questioncounter);
-          quiz.append(nextquestion).fadein();
-          if (!isnan(selections[questioncounter])) {
-            $("input[value=" + selections[questioncounter] + "]").prop(
+          var nextQuestion = createQuestionElement(questionCounter);
+          quiz.append(nextQuestion).fadeIn();
+          if (!isNaN(selections[questionCounter])) {
+            $("input[value=" + selections[questionCounter] + "]").prop(
               "checked",
               true
             );
           }
 
-          // controls display of 'prev' button
-          if (questioncounter === 1) {
+          // Controls display of 'prev' button
+          if (questionCounter === 1) {
             $("#prev").show();
-          } else if (questioncounter === 0) {
+          } else if (questionCounter === 0) {
             $("#prev").hide();
             $("#next").show();
           }
         } else {
-          var scoreelem = displayscore();
-          quiz.append(scoreelem).fadein();
+          var scoreElem = displayScore();
+          quiz.append(scoreElem).fadeIn();
           $("#next").hide();
           $("#prev").hide();
           $("#start").show();
@@ -234,35 +232,34 @@ document.addEventListener("DOMContentLoaded", (event) => {
       });
     }
 
-  function getscore() {
+  function getScore() {
 
-    var numcorrect = 0;
+    var numCorrect = 0;
     for (var i = 0; i < selections.length; i++) {
-      if (selections[i] === questions[i].correctanswer) {
-        numcorrect++;
+      if (selections[i] === questions[i].correctAnswer) {
+        numCorrect++;
       }
     }
-    return numcorrect;
+    return numCorrect;
   }
 
-    // computes score and returns a paragraph element to be displayed
-    function displayscore() {
-        // move results generation inside this function
-        function generateresultspage() {
-            // calculate score
-            const score = getscore();
-            const totalquestions = questions.length;
-
-            // start building html content
+    // Computes score and returns a paragraph element to be displayed
+    function displayScore() {
+        // Move results generation INSIDE this function
+        function generateResultsPage() {
+            // Calculate score
+            const score = getScore();
+            const totalQuestions = questions.length;
+      
+            // Start building HTML content
             let html = `
-                <!doctype html>
+                <!DOCTYPE html>
                 <html>
                 <head>
-                    <title>quiz results</title>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+                    <title>Quiz Results</title>
                     <style>
                         body { 
-                            font-family: arial, sans-serif; 
+                            font-family: Arial, sans-serif; 
                             max-width: 800px; 
                             margin: 0 auto; 
                             padding: 20px; 
@@ -307,37 +304,37 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 </head>
                 <body>
                     <div class="score">
-                        you scored ${score} out of ${totalquestions}
+                        You scored ${score} out of ${totalQuestions}
                     </div>
             `;
-
-            // generate results for each question
-            questions.foreach((question, index) => {
-                const useranswer = selections[index];
-                const iscorrect = useranswer === question.correctanswer;
-
-                // start question div
+      
+            // Generate results for each question
+            questions.forEach((question, index) => {
+                const userAnswer = selections[index];
+                const isCorrect = userAnswer === question.correctAnswer;
+      
+                // Start question div
                 html += `
                     <div class="question">
-                        <h3>question ${index + 1}: ${question.qtype || 'question'}</h3>
+                        <h3>Question ${index + 1}: ${question.qType || 'Question'}</h3>
                         <p>${question.question}</p>
                 `;
-
-                // add image if exists
+      
+                // Add image if exists
                 if (question.image) {
-                    html += `<img src="https://ricky-11254.github.io/toeic1/${question.image}" alt="question image" class="question-image">`;
+                    html += `<img src="${question.image}" alt="Question Image" class="question-image">`;
                 }
-
-                // add audio if exists
+      
+                // Add audio if exists
                 if (question.audio) {
                     html += `
                         <audio controls>
-                            <source src="https://ricky-11254.github.io/toeic1/audio/${question.audio}" type="audio/mpeg">
+                            <source src="audio/${question.audio}" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
                     `;
                 }
-
+      
                 // Generate choices
                 html += `<div class="choices">`;
                 question.choices.forEach((choice, choiceIndex) => {
@@ -348,7 +345,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     if (choiceIndex === userAnswer) {
                         choiceClass += isCorrect ? ' correct' : ' incorrect';
                     }
-
+      
                     html += `
                         <div class="choice ${choiceClass}">
                             ${choice}
@@ -356,7 +353,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     `;
                 });
                 html += `</div>`;
-
+      
                 // Add explanation if the answer was incorrect
                 if (!isCorrect && question.explanation) {
                     html += `
@@ -365,54 +362,24 @@ document.addEventListener("DOMContentLoaded", (event) => {
                         </div>
                     `;
                 }
-
+      
                 html += `</div>`; // Close question div
             });
-
+      
             // Close HTML
             html += `
                 <div style="text-align: center; margin-top: 20px;">
-                    <button onclick="downloadResults()" class="download-btn">Download Results</button>
+                    <button onclick="window.download()">Download Results</button>
                 </div>
-               </body>
+                </body>
                 </html>
-                <script>
-                    function downloadResults() {
-                        // Remove the download button temporarily
-                        const btn = document.querySelector('.download-btn');
-                        btn.style.display = 'none';
-                        
-                        // PDF options
-                        const opt = {
-                            margin: 1,
-                            filename: 'quiz-results.pdf',
-                            image: { type: 'jpeg', quality: 0.98 },
-                            html2canvas: { scale: 2, useCORS: true },
-                            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-                            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-                        };
-
-                        // Generate PDF from the body content
-                        html2pdf().set(opt).from(document.body).save().then(function() {
-                            // Show the button again after PDF is generated
-                            btn.style.display = 'block';
-                        });
-                    }
-                </script>
-
-                <style>
-                    .question {
-                        page-break-inside: avoid;
-                    }
-                </style>
             `;
-
+      
             // Open results in a new window
             const resultsWindow = window.open('', '_blank');
             resultsWindow.document.write(html);
             resultsWindow.document.close();
         }
-
          // Call results generation
          generateResultsPage();
       
