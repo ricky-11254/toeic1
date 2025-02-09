@@ -127,6 +127,12 @@ input[type="radio"] {
 }
 
 /* Style for the label that acts as our custom radio button */
+/* Remove the default radio button display */
+input[type="radio"] {
+  display: none;
+}
+
+/* Style for the label that acts as our custom radio button */
 #quiz label {
   display: block;
   width: 100%;
@@ -151,25 +157,24 @@ input[type="radio"] {
   margin-bottom: 10px;
 }
 
-/* Hover state - making it less specific than checked state */
-label:hover {
+/* Hover state */
+#quiz label:hover {
   background-color: #e6f0ff;
   border-color: #1a75ff;
 }
 
-/* Selected state - making it more specific to override hover */
-#quiz input[type="radio"]:checked + label {
-  background-color: #1a75ff !important; /* Using !important to ensure this rule takes precedence */
-  color: white !important;
-  border-color: #1a75ff !important;
+/* Selected state */
+input[type="radio"]:checked + label {
+  background-color: #1a75ff;
+  color: white;
+  border-color: #1a75ff;
 }
 
-/* Additional specificity for hover on checked state */
-#quiz input[type="radio"]:checked + label:hover {
-  background-color: #1a75ff !important;
-  color: white !important;
+/* Ensure the hover state doesn't override the checked state */
+input[type="radio"]:checked + label:hover {
+  background-color: #1a75ff;
+  color: white;
 }
-
 .button {
   border: 4px solid;
   border-radius: 5px;
