@@ -151,23 +151,23 @@ input[type="radio"] {
   margin-bottom: 10px;
 }
 
-/* Hover state */
-#quiz label:hover {
+/* Hover state - making it less specific than checked state */
+label:hover {
   background-color: #e6f0ff;
   border-color: #1a75ff;
 }
 
-/* Selected state */
-input[type="radio"]:checked + label {
-  background-color: #1a75ff;
-  color: white;
-  border-color: #1a75ff;
+/* Selected state - making it more specific to override hover */
+#quiz input[type="radio"]:checked + label {
+  background-color: #1a75ff !important; /* Using !important to ensure this rule takes precedence */
+  color: white !important;
+  border-color: #1a75ff !important;
 }
 
-/* Ensure the hover state doesn't override the checked state */
-input[type="radio"]:checked + label:hover {
-  background-color: #1a75ff;
-  color: white;
+/* Additional specificity for hover on checked state */
+#quiz input[type="radio"]:checked + label:hover {
+  background-color: #1a75ff !important;
+  color: white !important;
 }
 
 .button {
