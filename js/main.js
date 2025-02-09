@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
     // displays next requested element
-    function displaynext() {
+    function displayNext() {
       quiz.fadeout(function () {
         $("#question").remove();
 
