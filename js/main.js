@@ -1,10 +1,4 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-    const modal = document.getElementById("quizModal");
-    const agreeButton = document.getElementById("agreeButton");
-
-    agreeButton.addEventListener("click", () => {
-        modal.style.display = "none";
-    });
 /*  const hamburger = document.querySelector(".hamburger");
   const navMenu = document.querySelector(".nav-menu");
 
