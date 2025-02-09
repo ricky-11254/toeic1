@@ -151,6 +151,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         item = $("<li>");
         input = '<input type="radio" id="choice' + i + '" name="answer" value=' + i + ' />';
         input += '<label for="choice' + i + '">' + questions[index].choices[i] + '</label>'; 
+        input += questions[index].choices[i];
         input += "</label>";
         item.append(input);
         radiolist.append(item);
