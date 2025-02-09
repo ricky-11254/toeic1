@@ -1,4 +1,4 @@
-.modal {
+`.modal {
   display: block; /* Show the modal by default */
   position: fixed;
   z-index: 1;
@@ -119,11 +119,6 @@ h1 {
 
 .title {
   text-decoration: none;
-}
-
-/* Remove the default radio button display */
-input[type="radio"] {
-  display: none;
 }
 
 /* Remove the default radio button display */
