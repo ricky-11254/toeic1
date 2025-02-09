@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", (event) => {
+    const modal = document.getElementById("quizModal");
+    const agreeButton = document.getElementById("agreeButton");
+
+    agreeButton.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
 /*  const hamburger = document.querySelector(".hamburger");
   const navMenu = document.querySelector(".nav-menu");
 
@@ -149,29 +155,29 @@ document.addEventListener("DOMContentLoaded", (event) => {
       var input = "";
       for (var i = 0; i < questions[index].choices.length; i++) {
         item = $("<li>");
-        input = '<label><input type="radio" name="answer" value=' + i + " />";
-        input += questions[index].choices[i];
+        input = '<input type="radio" id="choice' + i + '" name="answer" value=' + i + ' />';
+        input += '<label for="choice' + i + '">' + questions[index].choices[i] + '</label>'; 
         input += "</label>";
         item.append(input);
-        radioList.append(item);
+        radiolist.append(item);
       }
-      return radioList;
+      return radiolist;
     }
 
-    // Reads the user selection and pushes the value to an array
+    // reads the user selection and pushes the value to an array
     function choose() {
-      selections[questionCounter] = +$('input[name="answer"]:checked').val();
+      selections[questioncounter] = +$('input[name="answer"]:checked').val();
     }
 
-    // Displays next requested element
-    function displayNext() {
-      quiz.fadeOut(function () {
+    // displays next requested element
+    function displaynext() {
+      quiz.fadeout(function () {
         $("#question").remove();
 
-        if (questionCounter < questions.length) {
-          var question = questions[questionCounter];
+        if (questioncounter < questions.length) {
+          var question = questions[questioncounter];
 
-          // Show 'image' defined in question object
+          // show 'image' defined in question object
 
           if (typeof question.image !== "undefined") {
             $("#image img").attr("src", "https://ricky-11254.github.io/toeic1/" + question.image);
@@ -191,41 +197,41 @@ document.addEventListener("DOMContentLoaded", (event) => {
           }
 
          
-          // Show 'content' defined in question object
-          console.log(typeof question.content, defaultQuestionContent);
+          // show 'content' defined in question object
+          console.log(typeof question.content, defaultquestioncontent);
           if (typeof question.content === "undefined") {
-            $("#content").text(defaultQuestionContent);
+            $("#content").text(defaultquestioncontent);
           } else {
             $("#content").text(question.content);
           }
 
-          // Show 'qType' defined in question object
-          console.log(typeof question.qType, defaultQuestionContent);
-          if (typeof question.qType === "undefined") {
-            $("#qType").text(defaultQuestionContent);
+          // show 'qtype' defined in question object
+          console.log(typeof question.qtype, defaultquestioncontent);
+          if (typeof question.qtype === "undefined") {
+            $("#qtype").text(defaultquestioncontent);
           } else {
-            $("#qType").text(question.qType);
+            $("#qtype").text(question.qtype);
           }
 
-          var nextQuestion = createQuestionElement(questionCounter);
-          quiz.append(nextQuestion).fadeIn();
-          if (!isNaN(selections[questionCounter])) {
-            $("input[value=" + selections[questionCounter] + "]").prop(
+          var nextquestion = createquestionelement(questioncounter);
+          quiz.append(nextquestion).fadein();
+          if (!isnan(selections[questioncounter])) {
+            $("input[value=" + selections[questioncounter] + "]").prop(
               "checked",
               true
             );
           }
 
-          // Controls display of 'prev' button
-          if (questionCounter === 1) {
+          // controls display of 'prev' button
+          if (questioncounter === 1) {
             $("#prev").show();
-          } else if (questionCounter === 0) {
+          } else if (questioncounter === 0) {
             $("#prev").hide();
             $("#next").show();
           }
         } else {
-          var scoreElem = displayScore();
-          quiz.append(scoreElem).fadeIn();
+          var scoreelem = displayscore();
+          quiz.append(scoreelem).fadein();
           $("#next").hide();
           $("#prev").hide();
           $("#start").show();
@@ -233,35 +239,35 @@ document.addEventListener("DOMContentLoaded", (event) => {
       });
     }
 
-  function getScore() {
+  function getscore() {
 
-    var numCorrect = 0;
+    var numcorrect = 0;
     for (var i = 0; i < selections.length; i++) {
-      if (selections[i] === questions[i].correctAnswer) {
-        numCorrect++;
+      if (selections[i] === questions[i].correctanswer) {
+        numcorrect++;
       }
     }
-    return numCorrect;
+    return numcorrect;
   }
 
-    // Computes score and returns a paragraph element to be displayed
-    function displayScore() {
-        // Move results generation INSIDE this function
-        function generateResultsPage() {
-            // Calculate score
-            const score = getScore();
-            const totalQuestions = questions.length;
+    // computes score and returns a paragraph element to be displayed
+    function displayscore() {
+        // move results generation inside this function
+        function generateresultspage() {
+            // calculate score
+            const score = getscore();
+            const totalquestions = questions.length;
 
-            // Start building HTML content
+            // start building html content
             let html = `
-                <!DOCTYPE html>
+                <!doctype html>
                 <html>
                 <head>
-                    <title>Quiz Results</title>
+                    <title>quiz results</title>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
                     <style>
                         body { 
-                            font-family: Arial, sans-serif; 
+                            font-family: arial, sans-serif; 
                             max-width: 800px; 
                             margin: 0 auto; 
                             padding: 20px; 
@@ -306,28 +312,28 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 </head>
                 <body>
                     <div class="score">
-                        You scored ${score} out of ${totalQuestions}
+                        you scored ${score} out of ${totalquestions}
                     </div>
             `;
 
-            // Generate results for each question
-            questions.forEach((question, index) => {
-                const userAnswer = selections[index];
-                const isCorrect = userAnswer === question.correctAnswer;
+            // generate results for each question
+            questions.foreach((question, index) => {
+                const useranswer = selections[index];
+                const iscorrect = useranswer === question.correctanswer;
 
-                // Start question div
+                // start question div
                 html += `
                     <div class="question">
-                        <h3>Question ${index + 1}: ${question.qType || 'Question'}</h3>
+                        <h3>question ${index + 1}: ${question.qtype || 'question'}</h3>
                         <p>${question.question}</p>
                 `;
 
-                // Add image if exists
+                // add image if exists
                 if (question.image) {
-                    html += `<img src="https://ricky-11254.github.io/toeic1/${question.image}" alt="Question Image" class="question-image">`;
+                    html += `<img src="https://ricky-11254.github.io/toeic1/${question.image}" alt="question image" class="question-image">`;
                 }
 
-                // Add audio if exists
+                // add audio if exists
                 if (question.audio) {
                     html += `
                         <audio controls>
