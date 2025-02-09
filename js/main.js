@@ -175,7 +175,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
           // Show 'image' defined in question object
 
           if (typeof question.image !== "undefined") {
-            $("#image img").attr("src", question.image);
+            $("#image img").attr("src", "https://ricky-11254.github.io/toeic1" + question.image);
             $("#image").show();
           } else {
             $("#image").hide();
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
           if (typeof question.audio !== "undefined") {
             $("#audio").show();
-            $("#audio audio").attr("src", "audio/" + question.audio);
+            $("#audio audio").attr("src", "https://ricky-11254.github.io/toeic1/audio/" + question.audio);
             // $("#audio audio")[0].play();
           } else {
             $("#audio").hide();
@@ -323,14 +323,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
       
                 // Add image if exists
                 if (question.image) {
-                    html += `<img src="${question.image}" alt="Question Image" class="question-image">`;
+                    html += `<img src="https://ricky-11254.github.io/toeic1/${question.image}" alt="Question Image" class="question-image">`;
                 }
       
                 // Add audio if exists
                 if (question.audio) {
                     html += `
                         <audio controls>
-                            <source src="audio/${question.audio}" type="audio/mpeg">
+                            <source src="https://ricky-11254.github.io/toeic1/audio/${question.audio}" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
                     `;
