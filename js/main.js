@@ -1,39 +1,10 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-/**  const hamburger = document.querySelector(".hamburger");
-  const navMenu = document.querySelector(".nav-menu");
+	const modal = document.getElementById("quizModal");
+	const agreeButton = document.getElementById("agreeButton");
 
-  hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
-    navMenu.classList.toggle("active");
-    var x = document.getElementById("container");
-      if (x.style.display === "none") {
-        x.style.display = "block";
-      } else {
-        x.style.display = "none";
-      }
-    });
-
-  document.querySelectorAll(".nav-link").forEach((link) =>
-    link.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("active");
-    })
-  );
-
-
-
-
-  /** Smooth Scrolling
-  $(document).on("click", 'a[href^="#"]', function (event) {
-    event.preventDefault();
-    $("html, body").animate(
-      {
-        scrollTop: $($.attr(this, "href")).offset().top,
-      },
-      500
-    );
-  });
-  **/
+	agreeButton.addEventListener("click", () => {
+		modal.style.display = "none";
+	});
 
   (function () {
 
@@ -247,11 +218,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
     // Computes score and returns a paragraph element to be displayed
     function displayScore() {
         // Move results generation INSIDE this function
-        function generateResultsPage() {
+       function generateResultsPage() {
             // Calculate score
             const score = getScore();
             const totalQuestions = questions.length;
-      
+
             // Start building HTML content
             let html = `
                 <!DOCTYPE html>
@@ -270,6 +241,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                             border: 1px solid #ddd; 
                             padding: 15px; 
                             border-radius: 5px; 
+                            page-break-after: always; /* Add page break after each question */
                         }
                         .choice {
                             padding: 10px;
@@ -301,6 +273,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
                             display: block;
                             margin: 10px 0;
                         }
+                        @media print {
+                            .no-print {
+                                display: none;
+                            }
+                        }
                     </style>
                 </head>
                 <body>
@@ -308,34 +285,34 @@ document.addEventListener("DOMContentLoaded", (event) => {
                         You scored ${score} out of ${totalQuestions}
                     </div>
             `;
-      
+
             // Generate results for each question
             questions.forEach((question, index) => {
                 const userAnswer = selections[index];
                 const isCorrect = userAnswer === question.correctAnswer;
-      
+
                 // Start question div
                 html += `
                     <div class="question">
                         <h3>Question ${index + 1}: ${question.qType || 'Question'}</h3>
                         <p>${question.question}</p>
                 `;
-      
+
                 // Add image if exists
                 if (question.image) {
-                    html += `<img src="https://ricky-11254.github.io/toeic1/${question.image}" alt="Question Image" class="question-image">`;
+                    html += `<img src="https://ricky-11254.github.io/jamb4/${question.image}" alt="Question Image" class="question-image">`;
                 }
-      
+
                 // Add audio if exists
                 if (question.audio) {
                     html += `
                         <audio controls>
-                            <source src="https://ricky-11254.github.io/toeic1/audio/${question.audio}" type="audio/mpeg">
+                            <source src="https://ricky-11254.github.io/jamb4/audio/${question.audio}" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
                     `;
                 }
-      
+
                 // Generate choices
                 html += `<div class="choices">`;
                 question.choices.forEach((choice, choiceIndex) => {
@@ -346,7 +323,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     if (choiceIndex === userAnswer) {
                         choiceClass += isCorrect ? ' correct' : ' incorrect';
                     }
-      
+
                     html += `
                         <div class="choice ${choiceClass}">
                             ${choice}
@@ -354,7 +331,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     `;
                 });
                 html += `</div>`;
-      
+
                 // Add explanation if the answer was incorrect
                 if (!isCorrect && question.explanation) {
                     html += `
@@ -363,25 +340,26 @@ document.addEventListener("DOMContentLoaded", (event) => {
                         </div>
                     `;
                 }
-      
+
                 html += `</div>`; // Close question div
             });
-      
+
             // Close HTML
             html += `
-                <div style="text-align: center; margin-top: 20px;">
-                    <button onclick="window.download()">Download Results</button>
+                <div style="text-align: center; margin-top: 20px;" class="no-print">
+                    <button onclick="window.print()">Download Results</button>
                 </div>
                 </body>
                 </html>
             `;
-      
+
             // Open results in a new window
             const resultsWindow = window.open('', '_blank');
             resultsWindow.document.write(html);
             resultsWindow.document.close();
-        }
-         // Call results generation
+        } 
+
+        // Call results generation
          generateResultsPage();
       
          // Create and return score element
