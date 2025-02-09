@@ -123,7 +123,7 @@ h1 {
 
 /* Remove the default radio button display */
 input[type="radio"] {
-  display: none;
+    display: inline-block;
 }
 
 /* Style for the label that acts as our custom radio button */
