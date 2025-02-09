@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-  const hamburger = document.querySelector(".hamburger");
+/**  const hamburger = document.querySelector(".hamburger");
   const navMenu = document.querySelector(".nav-menu");
 
   hamburger.addEventListener("click", () => {
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 
 
-  /** Smooth Scrolling**/
+  /** Smooth Scrolling
   $(document).on("click", 'a[href^="#"]', function (event) {
     event.preventDefault();
     $("html, body").animate(
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       500
     );
   });
+  **/
 
   (function () {
 
