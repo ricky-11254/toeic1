@@ -160,7 +160,7 @@ input[type="radio"]:not(:checked) + label:hover {
 /* Selected state */
 input[type="radio"]:checked + label {
   background-color: #1a75ff;
-  color: white;
+  color: blue;
   border-color: #1a75ff;
 }
 
